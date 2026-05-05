@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guía de Usuario — App BIONESTA Visitas</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g900:#064e3b;--g800:#065f46;--g700:#047857;--g600:#059669;
+  --g500:#10b981;--g400:#34d399;--g300:#6ee7b7;--g100:#d1fae5;--g50:#ecfdf5;
+  --teal:#0d9488;--teal2:#14b8a6;
+  --amber:#f59e0b;--red:#ef4444;--blue:#3b82f6;
+  --ink:#111827;--ink2:#374151;--ink3:#6b7280;--ink4:#9ca3af;
+  --bg:#f0fdf4;--card:#fff;
+  --font:'Nunito',sans-serif;--mono:'DM Mono',monospace;
+  --r:20px;--r2:14px;--r3:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);overflow-x:hidden}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(135deg,var(--g900) 0%,var(--g700) 50%,var(--teal) 100%);
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:60px 24px;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%,rgba(16,185,129,.25) 0%,transparent 60%),
+              radial-gradient(ellipse at 20% 80%,rgba(6,95,70,.4) 0%,transparent 60%);
+}
+.hero-inner{position:relative;z-index:1;text-align:center;max-width:700px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  border-radius:50px;padding:8px 20px;font-size:13px;font-weight:700;
+  color:var(--g300);letter-spacing:.06em;text-transform:uppercase;margin-bottom:28px;
+}
+.hero-title{font-size:clamp(36px,7vw,72px);font-weight:900;color:#fff;line-height:1;margin-bottom:16px;letter-spacing:-2px}
+.hero-title span{color:var(--g400)}
+.hero-sub{font-size:18px;color:rgba(255,255,255,.7);font-weight:600;margin-bottom:48px}
+.hero-phone{
+  width:160px;height:300px;background:rgba(255,255,255,.08);
+  border-radius:28px;border:2px solid rgba(255,255,255,.15);
+  margin:0 auto;position:relative;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,.3);
+}
+.hero-phone-screen{
+  position:absolute;inset:8px;border-radius:22px;
+  background:linear-gradient(160deg,#0f4f3a,#0f766e 40%,#14b8a6 70%,#ccfbf1);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+}
+.hero-phone-icon{font-size:32px}
+.hero-phone-txt{color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:1.3}
+.hero-nav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+.hero-nav a{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  border-radius:50px;padding:10px 20px;font-size:13px;font-weight:700;
+  color:#fff;text-decoration:none;transition:all .2s;
+}
+.hero-nav a:hover{background:rgba(255,255,255,.22)}
+
+/* ── SECCIONES ── */
+.section{padding:80px 24px;max-width:1100px;margin:0 auto}
+.section-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--g700);margin-bottom:12px;
+}
+.section-title{font-size:clamp(28px,5vw,48px);font-weight:900;color:var(--ink);letter-spacing:-1.5px;margin-bottom:8px}
+.section-sub{font-size:16px;color:var(--ink3);font-weight:600;margin-bottom:48px;max-width:560px}
+
+/* ── PASO GRID ── */
+.paso{
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;
+  align-items:center;margin-bottom:100px;
+}
+.paso.reverse{grid-template-columns:1fr 1fr}
+.paso.reverse .paso-phone{order:2}
+.paso.reverse .paso-content{order:1}
+@media(max-width:768px){
+  .paso,.paso.reverse{grid-template-columns:1fr;gap:32px}
+  .paso.reverse .paso-phone,.paso.reverse .paso-content{order:unset}
+}
+
+/* ── NÚMERO DE PASO ── */
+.paso-num{
+  display:inline-flex;align-items:center;gap:12px;margin-bottom:16px;
+}
+.paso-num-circle{
+  width:48px;height:48px;border-radius:50%;
+  background:linear-gradient(135deg,var(--g700),var(--teal));
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:900;color:#fff;flex-shrink:0;
+  box-shadow:0 8px 20px rgba(4,120,87,.3);
+}
+.paso-num-txt{font-size:13px;font-weight:800;color:var(--g700);text-transform:uppercase;letter-spacing:.08em}
+.paso-title{font-size:30px;font-weight:900;color:var(--ink);letter-spacing:-1px;margin-bottom:16px;line-height:1.1}
+.paso-desc{font-size:15px;color:var(--ink3);line-height:1.7;margin-bottom:20px;font-weight:600}
+
+/* ── PUNTOS DE INFO ── */
+.info-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.info-item{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--card);border-radius:var(--r3);
+  padding:12px 14px;border:1px solid #e5f7ef;
+  box-shadow:0 2px 8px rgba(4,120,87,.05);
+}
+.info-dot{
+  width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;
+}
+.dot-green{background:var(--g500)}
+.dot-amber{background:var(--amber)}
+.dot-red{background:var(--red)}
+.dot-blue{background:var(--blue)}
+.info-text{font-size:14px;color:var(--ink2);font-weight:600;line-height:1.5}
+.info-text strong{color:var(--g700)}
+
+/* ── ALERTA BOX ── */
+.alert{
+  border-radius:var(--r3);padding:14px 16px;
+  font-size:13px;font-weight:700;line-height:1.5;
+  display:flex;align-items:flex-start;gap:10px;
+}
+.alert-green{background:#d1fae5;color:#065f46;border-left:4px solid var(--g500)}
+.alert-amber{background:#fef3c7;color:#92400e;border-left:4px solid var(--amber)}
+.alert-red{background:#fee2e2;color:#991b1b;border-left:4px solid var(--red)}
+.alert-blue{background:#dbeafe;color:#1e40af;border-left:4px solid var(--blue)}
+
+/* ── CELULAR MOCK ── */
+.phone-wrap{display:flex;justify-content:center;align-items:center}
+.phone{
+  width:220px;height:440px;
+  background:#1a1a2e;border-radius:36px;
+  border:3px solid #2d2d4e;
+  position:relative;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,.25),0 0 0 1px rgba(255,255,255,.05);
+  flex-shrink:0;
+}
+.phone::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:80px;height:22px;background:#1a1a2e;border-radius:0 0 14px 14px;z-index:10;
+}
+.phone-screen{
+  position:absolute;inset:3px;border-radius:34px;overflow:hidden;
+  background:linear-gradient(160deg,#0f4f3a 0%,#0f766e 40%,#14b8a6 70%,#ccfbf1 100%);
+}
+
+/* HEADER del celular */
+.ph-header{
+  background:rgba(10,50,42,.6);backdrop-filter:blur(10px);
+  padding:28px 14px 12px;
+}
+.ph-brand{font-size:7px;font-weight:800;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase}
+.ph-title{font-size:15px;font-weight:800;color:#fff;margin-top:2px}
+.ph-sub{font-size:9px;color:rgba(255,255,255,.55);font-family:var(--mono)}
+
+/* BODY del celular */
+.ph-body{padding:10px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+
+/* CARDS dentro del celular */
+.ph-card{
+  background:rgba(255,255,255,.88);backdrop-filter:blur(8px);
+  border-radius:10px;padding:9px 11px;border:1px solid rgba(255,255,255,.6);
+}
+.ph-label{font-size:7px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.ph-value{font-size:11px;font-weight:700;color:#1e293b}
+.ph-sub-val{font-size:9px;color:#64748b;font-weight:600}
+
+/* GPS badge */
+.ph-gps{display:flex;align-items:center;gap:6px}
+.ph-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.ph-gps-txt{font-size:10px;font-weight:700}
+
+/* Input field */
+.ph-input{
+  background:rgba(255,255,255,.9);border-radius:8px;
+  border:1.5px solid #cbd5e1;padding:7px 10px;
+  font-size:10px;color:#94a3b8;font-family:var(--font);font-weight:600;
+}
+.ph-input.filled{color:#1e293b;border-color:#0d9488}
+
+/* Button */
+.ph-btn{
+  border-radius:8px;padding:9px;text-align:center;
+  font-size:11px;font-weight:800;border:none;width:100%;
+}
+.ph-btn-green{background:#0f766e;color:#fff}
+.ph-btn-red{background:#dc2626;color:#fff}
+.ph-btn-outline{background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+
+/* Foto area */
+.ph-camera{
+  background:#0d1a16;border-radius:10px;
+  height:70px;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.ph-shutter{
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,.9);
+  border:3px solid rgba(255,255,255,.3);
+  display:flex;align-items:center;justify-content:center;
+}
+.ph-shutter-in{width:22px;height:22px;border-radius:50%;background:#fff;border:1.5px solid #ccc}
+
+/* Timer */
+.ph-timer{
+  background:rgba(255,255,255,.9);border-radius:10px;padding:10px;
+  text-align:center;border:1.5px solid #5eead4;
+}
+.ph-timer-num{font-family:var(--mono);font-size:28px;font-weight:500;color:#0f766e}
+.ph-timer-label{font-size:8px;color:#64748b;font-weight:700;text-transform:uppercase;margin-top:2px}
+
+/* Badge de confirmacion */
+.ph-badge{
+  border-radius:8px;padding:6px 10px;font-size:10px;font-weight:800;
+  display:flex;align-items:center;gap:6px;
+}
+.ph-badge-green{background:rgba(209,250,229,.9);color:#065f46}
+.ph-badge-amber{background:rgba(254,243,199,.9);color:#92400e}
+
+/* Alerta tiempo */
+.ph-alert{
+  background:rgba(15,118,110,.9);border-radius:10px;padding:10px;
+  border:1px solid rgba(94,234,212,.4);
+}
+.ph-alert-title{font-size:10px;font-weight:800;color:#fff;margin-bottom:4px}
+.ph-alert-sub{font-size:8px;color:rgba(255,255,255,.7);margin-bottom:6px}
+.ph-alert-timer{font-family:var(--mono);font-size:20px;color:#5eead4;text-align:center;font-weight:500;margin-bottom:6px}
+.ph-alert-btns{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.ph-alert-btn{border-radius:6px;padding:5px;text-align:center;font-size:8px;font-weight:800;border:none}
+.ph-alert-si{background:#22b88a;color:#fff}
+.ph-alert-no{background:rgba(255,255,255,.15);color:#fff}
+
+/* Historial cards */
+.ph-vcard{
+  background:rgba(255,255,255,.85);border-radius:10px;padding:8px;
+  display:flex;gap:8px;align-items:center;border:1px solid rgba(255,255,255,.6);
+}
+.ph-avatar{
+  width:30px;height:30px;border-radius:50%;
+  background:#d1fae5;display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:800;color:#0f766e;flex-shrink:0;
+}
+.ph-vinfo{flex:1;min-width:0}
+.ph-vname{font-size:10px;font-weight:800;color:#1e293b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ph-vmeta{font-size:8px;color:#64748b;font-weight:600;margin-top:1px}
+.ph-vtag{font-size:7px;background:#f0fdfa;color:#0f766e;border-radius:5px;padding:2px 5px;font-weight:800;display:inline-block;margin-top:3px}
+
+/* NAV inferior */
+.ph-nav{
+  position:absolute;bottom:0;left:0;right:0;
+  background:rgba(255,255,255,.12);backdrop-filter:blur(12px);
+  border-top:1px solid rgba(255,255,255,.15);
+  display:flex;height:44px;
+}
+.ph-nav-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:2px;font-size:8px;font-weight:700;
+}
+.ph-nav-btn.active{color:#fff}
+.ph-nav-btn.inactive{color:rgba(255,255,255,.4)}
+
+/* Success screen */
+.ph-success{
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;height:100%;gap:10px;padding:20px;
+}
+.ph-check{
+  width:52px;height:52px;border-radius:50%;
+  background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.3);
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+}
+.ph-success-title{font-size:14px;font-weight:900;color:#fff;text-align:center}
+.ph-sum{background:rgba(255,255,255,.85);border-radius:10px;width:100%;padding:10px}
+.ph-sum-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(15,118,110,.08);font-size:9px}
+.ph-sum-row:last-child{border-bottom:none}
+.ph-sum-k{color:#64748b;font-weight:700}
+.ph-sum-v{color:#1e293b;font-weight:700}
+
+/* ── FAQ ── */
+.faq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:40px}
+.faq-card{
+  background:var(--card);border-radius:var(--r2);padding:24px;
+  border:1px solid #e5f7ef;box-shadow:0 4px 20px rgba(4,120,87,.06);
+  transition:transform .2s,box-shadow .2s;
+}
+.faq-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(4,120,87,.1)}
+.faq-icon{font-size:28px;margin-bottom:12px}
+.faq-q{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:8px;line-height:1.3}
+.faq-a{font-size:13px;color:var(--ink3);font-weight:600;line-height:1.6}
+
+/* ── DATOS UTILES ── */
+.datos-section{
+  background:linear-gradient(135deg,var(--g900),var(--g700));
+  border-radius:28px;padding:48px;margin-top:40px;
+  box-shadow:0 24px 60px rgba(4,120,87,.25);
+}
+.datos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:32px}
+.dato-card{
+  background:rgba(255,255,255,.08);border-radius:var(--r2);
+  padding:20px;border:1px solid rgba(255,255,255,.1);
+  transition:background .2s;
+}
+.dato-card:hover{background:rgba(255,255,255,.13)}
+.dato-icon{font-size:24px;margin-bottom:10px}
+.dato-label{font-size:11px;font-weight:800;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+.dato-value{font-size:14px;font-weight:700;color:#fff;line-height:1.4}
+
+/* ── DIVIDER GRADIENT ── */
+.divider{
+  height:2px;background:linear-gradient(90deg,transparent,var(--g300),transparent);
+  margin:0 auto;max-width:400px;opacity:.4;
+}
+
+/* ── ANIMACIONES ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.5}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.ph-dot.amber-anim{animation:pulse 1.4s ease-in-out infinite}
+.ph-timer-num{animation:none}
+
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .datos-section{padding:28px 20px}
+  .faq-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">📱 App BIONESTA · Visitas Médicas</div>
+    <h1 class="hero-title">Guía de<br><span>Usuario</span></h1>
+    <p class="hero-sub">Todo lo que necesitas saber para registrar tus visitas médicas paso a paso</p>
+    <div class="hero-phone">
+      <div class="hero-phone-screen">
+        <div class="hero-phone-icon">🏥</div>
+        <div class="hero-phone-txt">App BIONESTA<br>Visitas Médicas</div>
+      </div>
+    </div>
+    <nav class="hero-nav">
+      <a href="#paso1">GPS</a>
+      <a href="#paso2">Formulario</a>
+      <a href="#paso3">Foto</a>
+      <a href="#paso4">Iniciar</a>
+      <a href="#paso5">Finalizar</a>
+      <a href="#alerta">Alerta</a>
+      <a href="#visitas">Mis visitas</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ══ PASO 1: GPS ══ -->
+<div class="section" id="paso1">
+  <div class="section-label">📍 Primer paso</div>
+  <h2 class="section-title">Paso 1 — Verificar el GPS</h2>
+  <p class="section-sub">La app obtiene tu ubicación automáticamente al abrirse. Espera a que el indicador cambie a verde.</p>
+
+  <div class="paso">
+    <div class="paso-phone fade-in">
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="ph-header">
+              <div class="ph-brand">BIONESTA</div>
+              <div class="ph-title">Nueva visita</div>
+              <div class="ph-sub">Martes 6 de mayo</div>
+            </div>
+            <div class="ph-body">
+              <div class="ph-card">
+                <div class="ph-label">📍 Ubicación GPS *</div>
+                <div class="ph-gps" style="margin-bottom:4px">
+                  <div class="ph-dot dot-green"></div>
+                  <span class="ph-gps-txt" style="color:#0f766e">Ubicación obtenida · ±8m</span>
+                </div>
+                <div style="font-size:9px;color:#334155;font-weight:700">Av. Amazonas N32-45</div>
+                <div style="font-size:9px;color:#64748b;font-weight:600">La Mariscal, Quito, Pichincha</div>
+              </div>
+              <div class="ph-card" style="border:1.5px dashed #fbbf24;background:rgba(254,243,199,.7)">
+                <div class="ph-label" style="color:#92400e">⚠️ Sin permiso GPS</div>
+                <div class="ph-gps">
+                  <div class="ph-dot dot-amber amber-anim"></div>
+                  <span class="ph-gps-txt" style="color:#92400e">Buscando señal...</span>
+                </div>
+              </div>
+              <div class="ph-card" style="border:1.5px solid #fca5a5;background:rgba(254,226,226,.7)">
+                <div class="ph-gps">
+                  <div class="ph-dot dot-red"></div>
+                  <span class="ph-gps-txt" style="color:#dc2626">Sin permiso de GPS</span>
+                </div>
+              </div>
+              <button class="ph-btn" style="background:rgba(255,255,255,.2);color:#fff;font-size:9px;border:1px solid rgba(255,255,255,.3)">🔄 Actualizar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paso-content fade-in">
+      <div class="paso-num">
+        <div class="paso-num-circle">1</div>
+        <div class="paso-num-txt">Primer paso</div>
+      </div>
+      <h3 class="paso-title">Verificar el GPS</h3>
+      <div class="info-list">
+        <div class="info-item">
+          <div class="info-dot" style="background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,.2)"></div>
+          <div class="info-text"><strong>Punto VERDE fijo</strong> — Ubicación obtenida. La app también muestra la dirección en texto: calle, sector y ciudad. ¡Puedes continuar!</div>
+        </div>
+        <div class="info-item">
+          <div class="info-dot" style="background:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.2)"></div>
+          <div class="info-text"><strong>Punto ÁMBAR parpadeando</strong> — Buscando señal. Espera unos segundos hasta que cambie a verde.</div>
+        </div>
+        <div class="info-item">
+          <div class="info-dot" style="background:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.2)"></div>
+          <div class="info-text"><strong>Punto ROJO</strong> — Sin permiso. Ve a Configuración → Apps → Chrome → Permisos → Ubicación → Permitir siempre.</div>
+        </div>
+      </div>
+      <div class="alert alert-blue">
+        💡 <span>Si el GPS no responde, toca el botón <strong>"Actualizar"</strong> junto al indicador. La dirección en texto requiere internet (OpenStreetMap).</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ PASO 2: FORMULARIO ══ -->
+<div class="section" id="paso2">
+  <div class="section-label">📝 Segundo paso</div>
+  <h2 class="section-title">Paso 2 — Llenar el Formulario</h2>
+  <p class="section-sub">Solo hay un campo obligatorio: el nombre del médico. El resto ya viene listo o es opcional.</p>
+
+  <div class="paso reverse">
+    <div class="paso-content fade-in">
+      <div class="paso-num">
+        <div class="paso-num-circle">2</div>
+        <div class="paso-num-txt">Segundo paso</div>
+      </div>
+      <h3 class="paso-title">Llenar el Formulario</h3>
+      <div class="info-list">
+        <div class="info-item">
+          <div class="info-dot dot-blue"></div>
+          <div class="info-text"><strong>Visitador médico</strong> — Ya viene con tu nombre (YADIRA CÓRDOBA). No lo cambies.</div>
+        </div>
+        <div class="info-item">
+          <div class="info-dot dot-green"></div>
+          <div class="info-text"><strong>Médico visitado *</strong> — Escribe el nombre completo del médico y la clínica. Este campo es <strong>obligatorio</strong>.</div>
+        </div>
+        <div class="info-item">
+          <div class="info-dot" style="background:#a78bfa"></div>
+          <div class="info-text"><strong>Notas (opcional)</strong> — Escribe productos presentados, observaciones o acuerdos. Puedes dejar este campo vacío.</div>
+        </div>
+      </div>
+      <div class="alert alert-amber">
+        ⚠️ <span>Si dejas el campo <strong>"Médico visitado"</strong> vacío, la app lo marca en rojo y no te deja continuar hasta que lo llenes.</span>
+      </div>
+    </div>
+
+    <div class="paso-phone fade-in">
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="ph-header">
+              <div class="ph-brand">BIONESTA</div>
+              <div class="ph-title">Nueva visita</div>
+            </div>
+            <div class="ph-body">
+              <div class="ph-card">
+                <div class="ph-label">👤 Visitador médico</div>
+                <div class="ph-input filled">YADIRA CÓRDOBA</div>
+              </div>
+              <div class="ph-card">
+                <div class="ph-label">📋 Médico visitado <span style="color:#ef4444">*</span></div>
+                <div class="ph-input filled" style="color:#1e293b;border-color:#0d9488">Dr. Carlos Mejía — Clínica San José</div>
+              </div>
+              <div class="ph-card" style="border:1.5px solid #fca5a5;background:rgba(254,226,226,.4)">
+                <div class="ph-label" style="color:#ef4444">📋 Médico visitado <span>*</span></div>
+                <div class="ph-input" style="border-color:#ef4444;box-shadow:0 0 0 2px rgba(239,68,68,.15)">Escribe aquí...</div>
+                <div style="font-size:8px;color:#ef4444;font-weight:700;margin-top:4px">⚠ Este campo es obligatorio</div>
+              </div>
+              <div class="ph-card">
+                <div class="ph-label">✏️ Notas (opcional)</div>
+                <div class="ph-input" style="height:28px">Productos presentados, acuerdos...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ PASO 3: FOTO ══ -->
+<div class="section" id="paso3">
+  <div class="section-label">📷 Tercer paso</div>
+  <h2 class="section-title">Paso 3 — Tomar la Foto</h2>
+  <p class="section-sub">La foto es obligatoria en cada visita. Puede ser del médico, consultorio, receta o cualquier evidencia.</p>
+
+  <div class="paso">
+    <div class="paso-phone fade-in">
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="ph-header">
+              <div class="ph-brand">BIONESTA</div>
+              <div class="ph-title">Nueva visita</div>
+            </div>
+            <div class="ph-body">
+              <div class="ph-camera">
+                <!-- Visor de cámara -->
+                <div style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,.5);border-radius:6px;padding:4px 7px;font-size:8px;color:#fff;font-weight:700;display:flex;align-items:center;gap:4px">
+                  🔄 Girar
+                </div>
+                <!-- Retícula -->
+                <div style="position:absolute;inset:10px;border:1px solid rgba(255,255,255,.2);border-radius:4px"></div>
+                <!-- Shutter -->
+                <div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%)">
+                  <div class="ph-shutter"><div class="ph-shutter-in"></div></div>
+                </div>
+              </div>
+              <div class="ph-badge ph-badge-green">
+                <span>✓</span><span>Foto capturada correctamente</span>
+              </div>
+              <div style="display:flex;gap:6px">
+                <button class="ph-btn" style="background:rgba(255,255,255,.15);color:#fff;font-size:9px;border:1px solid rgba(255,255,255,.2);flex:1">📷 Abrir cámara</button>
+                <button class="ph-btn" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:9px;border:1px solid rgba(255,255,255,.15);flex:1">🔄 Repetir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paso-content fade-in">
+      <div class="paso-num">
+        <div class="paso-num-circle">3</div>
+        <div class="paso-num-txt">Tercer paso</div>
+      </div>
+      <h3 class="paso-title">Tomar la Foto</h3>
+      <div class="info-list">
+        <div class="info-item"><div class="info-dot dot-green"></div><div class="info-text">Toca <strong>"Abrir cámara"</strong> para activar la cámara del teléfono.</div></div>
+        <div class="info-item"><div class="info-dot dot-green"></div><div class="info-text">Toca el botón <strong>"Girar"</strong> (esquina superior derecha del visor) para cambiar entre cámara frontal y trasera.</div></div>
+        <div class="info-item"><div class="info-dot dot-green"></div><div class="info-text">Toca el <strong>botón blanco redondo grande</strong> para capturar la foto.</div></div>
+        <div class="info-item"><div class="info-dot dot-amber"></div><div class="info-text">Si no quedó bien, toca <strong>"Repetir"</strong> para tomar otra.</div></div>
+        <div class="info-item"><div class="info-dot dot-blue"></div><div class="info-text">Verás el mensaje verde <strong>"Foto capturada correctamente"</strong> cuando esté lista.</div></div>
+      </div>
+      <div class="alert alert-green">
+        ✅ <span>La foto se comprime automáticamente antes de enviarse. Se sube a <strong>Google Drive</strong> en segundo plano al finalizar la visita.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ PASO 4: INICIAR ══ -->
+<div class="section" id="paso4">
+  <div class="section-label">▶️ Cuarto paso</div>
+  <h2 class="section-title">Paso 4 — Iniciar la Visita</h2>
+  <p class="section-sub">Al tocar "Iniciar visita" el cronómetro arranca y la fecha/hora quedan registradas en ese momento exacto.</p>
+
+  <div class="paso reverse">
+    <div class="paso-content fade-in">
+      <div class="paso-num">
+        <div class="paso-num-circle">4</div>
+        <div class="paso-num-txt">Cuarto paso</div>
+      </div>
+      <h3 class="paso-title">Iniciar la Visita</h3>
+      <div class="info-list">
+        <div class="info-item"><div class="info-dot dot-green"></div><div class="info-text">Toca el botón verde <strong>"Iniciar visita"</strong>. Aparece el cronómetro contando en tiempo real.</div></div>
+        <div class="info-item"><div class="info-dot dot-green"></div><div class="info-text">El cronómetro es <strong>resistente a apagados</strong>: si el teléfono se apaga o cierras la app, al volver el tiempo sigue siendo correcto.</div></div>
+        <div class="info-item"><div class="info-dot dot-blue"></div><div class="info-text">La <strong>fecha y hora se guardan en este momento</strong>, no al finalizar. Así evitas registros en el día equivocado.</div></div>
+        <div class="info-item"><div class="info-dot" style="background:#a78bfa"></div><div class="info-text">Puedes escribir <strong>notas adicionales</strong> mientras dura la visita en el campo de texto que aparece.</div></div>
+      </div>
+      <div class="alert alert-amber">
+        ⏱️ <span>Si la visita llega a <strong>2 horas (120 minutos)</strong> aparece una alerta automática en pantalla. Ver sección "Alerta de 2 horas" más abajo.</span>
+      </div>
+    </div>
+
+    <div class="paso-phone fade-in">
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="ph-header" style="background:rgba(15,118,110,.65)">
+              <div class="ph-brand">BIONESTA</div>
+              <div class="ph-title" style="font-size:12px">Dr. Carlos Mejía — Clínica S.</div>
+              <div class="ph-sub">YADIRA CÓRDOBA</div>
+            </div>
+            <div class="ph-body">
+              <div class="ph-timer">
+                <div style="display:flex;align-items:center;gap:5px;margin-bottom:6px">
+                  <div class="ph-dot dot-green" style="animation:pulse 1.2s ease-in-out infinite"></div>
+                  <span style="font-size:8px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.05em">Tiempo en consulta</span>
+                </div>
+                <div class="ph-timer-num">17:34</div>
+                <div class="ph-timer-label">Inicio: 09:15:03</div>
+              </div>
+              <div class="ph-card">
+                <div class="ph-label">📍 GPS de entrada</div>
+                <div style="font-size:9px;color:#14b8a6;font-weight:700">-0.931200, -78.601200 · ±8m</div>
+              </div>
+              <div class="ph-card">
+                <div class="ph-label">✏️ Notas durante la visita</div>
+                <div class="ph-input">Observaciones adicionales...</div>
+              </div>
+              <button class="ph-btn ph-btn-red">■ Finalizar visita</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ PASO 5: FINALIZAR ══ -->
+<div class="section" id="paso5">
+  <div class="section-label">✅ Quinto paso</div>
+  <h2 class="section-title">Paso 5 — Finalizar la Visita</h2>
+  <p class="section-sub">Toca el botón rojo cuando termines la consulta. El resumen aparece de inmediato.</p>
+
+  <div class="paso">
+    <div class="paso-phone fade-in">
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="ph-header">
+              <div class="ph-brand">BIONESTA</div>
+              <div class="ph-title">Visita registrada</div>
+            </div>
+            <div class="ph-success">
+              <div class="ph-check">✅</div>
+              <div class="ph-success-title">¡Visita completada!</div>
+              <div class="ph-sum">
+                <div class="ph-sum-row"><span class="ph-sum-k">Médico</span><span class="ph-sum-v">Dr. Carlos Mejía</span></div>
+                <div class="ph-sum-row"><span class="ph-sum-k">Inicio</span><span class="ph-sum-v">09:15</span></div>
+                <div class="ph-sum-row"><span class="ph-sum-k">Fin</span><span class="ph-sum-v">09:32</span></div>
+                <div class="ph-sum-row"><span class="ph-sum-k">Duración</span><span class="ph-sum-v">17 minutos</span></div>
+                <div class="ph-sum-row"><span class="ph-sum-k">Foto</span><span class="ph-sum-v" style="color:#0f766e">✓ Capturada</span></div>
+                <div class="ph-sum-row"><span class="ph-sum-k">Estado</span><span class="ph-sum-v" style="color:#0f766e">● Enviando...</span></div>
+              </div>
+              <button class="ph-btn ph-btn-green" style="font-size:10px">+ Nueva visita</button>
+              <button class="ph-btn ph-btn-outline" style="font-size:10px">Ver mis visitas del día</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paso-content fade-in">
+      <div class="paso-num">
+        <div class="paso-num-circle">5</div>
+        <div class="paso-num-txt">Quinto paso</div>
+      </div>
+      <h3 class="paso-title">Finalizar la Visita</h3>
+      <div class="info-list">
+        <div class="info-item"><div class="info-dot dot-red"></div><div class="info-text">Toca el botón rojo <strong>"Finalizar visita"</strong> cuando termines la consulta.</div></div>
+        <div class="info-item"><div class="info-dot dot-green"></div><div class="info-text">El <strong>resumen aparece inmediatamente</strong>: médico, hora de entrada y salida, duración y estado de la foto.</div></div>
+        <div class="info-item"><div class="info-dot dot-green"></div><div class="info-text">La foto se sube a <strong>Google Drive</strong> en segundo plano. No tienes que esperar.</div></div>
+        <div class="info-item"><div class="info-dot dot-green"></div><div class="info-text">Los datos van automáticamente a <strong>Google Sheets</strong> y se envían correos de notificación al supervisor.</div></div>
+      </div>
+      <div class="alert alert-green">
+        🚀 <span>No tienes que esperar ninguna pantalla de carga. El resumen aparece de inmediato y el envío ocurre en segundo plano sin que tengas que hacer nada más.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ ALERTA 2 HORAS ══ -->
+<div class="section" id="alerta">
+  <div class="section-label">⚠️ Aviso automático</div>
+  <h2 class="section-title">Alerta de 2 Horas</h2>
+  <p class="section-sub">Si la visita supera las 2 horas sin que la cierres, el celular vibra y aparece un aviso automático.</p>
+
+  <div class="paso reverse">
+    <div class="paso-content fade-in">
+      <div class="paso-num">
+        <div class="paso-num-circle" style="background:linear-gradient(135deg,#d97706,#f59e0b)">⏰</div>
+        <div class="paso-num-txt" style="color:#d97706">Aviso automático</div>
+      </div>
+      <h3 class="paso-title">¿Qué pasa a los 120 minutos?</h3>
+      <div class="info-list">
+        <div class="info-item"><div class="info-dot dot-amber"></div><div class="info-text"><strong>A los 120 minutos</strong> el celular vibra 3 veces y aparece el banner de alerta en pantalla.</div></div>
+        <div class="info-item"><div class="info-dot dot-amber"></div><div class="info-text">Tienes <strong>5 minutos para responder</strong>. Verás una cuenta regresiva en pantalla bajando de 5:00.</div></div>
+        <div class="info-item"><div class="info-dot dot-green"></div><div class="info-text">Toca <strong>"Sí, sigo en visita"</strong> — el mensaje desaparece y el cronómetro continúa normalmente.</div></div>
+        <div class="info-item"><div class="info-dot dot-red"></div><div class="info-text">Toca <strong>"Finalizar ahora"</strong> — la visita se cierra y guarda de inmediato.</div></div>
+        <div class="info-item"><div class="info-dot dot-amber"></div><div class="info-text">Si <strong>no respondes</strong> en 5 minutos, la visita se cierra automáticamente con duración máxima de 120 minutos.</div></div>
+      </div>
+      <div class="alert alert-amber">
+        📌 <span>La duración máxima que se registra es <strong>120 minutos</strong>. Esto evita registros incorrectos si olvidaste cerrar la visita.</span>
+      </div>
+    </div>
+
+    <div class="paso-phone fade-in">
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="ph-header" style="background:rgba(15,118,110,.65)">
+              <div class="ph-brand">BIONESTA</div>
+              <div class="ph-title" style="font-size:12px">Dr. Carlos Mejía</div>
+              <div class="hdr-pill" style="background:rgba(255,220,100,.2);border:1px solid rgba(255,220,100,.4);border-radius:12px;padding:2px 8px;font-size:9px;color:#fcd34d;font-family:var(--mono);margin-top:4px;display:inline-block">2:04:11</div>
+            </div>
+            <div class="ph-body">
+              <div class="ph-alert">
+                <div class="ph-alert-title">⚠️ ¿Sigues en la visita?</div>
+                <div class="ph-alert-sub">Llevas más de 2 horas. Si no respondes, se cerrará en:</div>
+                <div class="ph-alert-timer">4:32</div>
+                <div class="ph-alert-btns">
+                  <button class="ph-alert-btn ph-alert-si">✓ Sí, sigo en visita</button>
+                  <button class="ph-alert-btn ph-alert-no">✕ Finalizar ahora</button>
+                </div>
+              </div>
+              <div class="ph-timer" style="margin-top:4px">
+                <div class="ph-timer-num">2:04:11</div>
+                <div class="ph-timer-label">Cronómetro en curso</div>
+              </div>
+              <button class="ph-btn ph-btn-red" style="margin-top:4px">■ Finalizar visita</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ MIS VISITAS ══ -->
+<div class="section" id="visitas">
+  <div class="section-label">📋 Historial</div>
+  <h2 class="section-title">Mis Visitas del Día</h2>
+  <p class="section-sub">Toca "Mis visitas" en la barra inferior para ver todas las visitas registradas hoy.</p>
+
+  <div class="paso">
+    <div class="paso-phone fade-in">
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="ph-header">
+              <div class="ph-brand">BIONESTA</div>
+              <div class="ph-title">Mis visitas</div>
+              <div class="ph-sub">3 hoy · actualizado 09:45</div>
+            </div>
+            <div class="ph-body">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:2px">
+                <div class="ph-card" style="text-align:center">
+                  <div style="font-size:22px;font-weight:900;color:#0f766e;font-family:var(--mono)">3</div>
+                  <div style="font-size:7px;color:#64748b;font-weight:700;text-transform:uppercase">Visitas hoy</div>
+                </div>
+                <div class="ph-card" style="text-align:center">
+                  <div style="font-size:22px;font-weight:900;color:#0f766e;font-family:var(--mono)">3</div>
+                  <div style="font-size:7px;color:#64748b;font-weight:700;text-transform:uppercase">Con foto</div>
+                </div>
+              </div>
+              <div class="ph-vcard">
+                <div class="ph-avatar">CM</div>
+                <div class="ph-vinfo">
+                  <div class="ph-vname">Dr. Carlos Mejía</div>
+                  <div class="ph-vmeta">09:15 → 09:32 · 17 min</div>
+                  <div class="ph-vtag">📷 Ver foto</div>
+                </div>
+              </div>
+              <div class="ph-vcard">
+                <div class="ph-avatar">PR</div>
+                <div class="ph-vinfo">
+                  <div class="ph-vname">Dra. Patricia Ramos</div>
+                  <div class="ph-vmeta">10:00 → 10:24 · 24 min</div>
+                  <div class="ph-vtag">📷 Ver foto</div>
+                </div>
+              </div>
+              <div class="ph-vcard">
+                <div class="ph-avatar">JV</div>
+                <div class="ph-vinfo">
+                  <div class="ph-vname">Dr. Juan Vargas</div>
+                  <div class="ph-vmeta">11:10 → 11:30 · 20 min</div>
+                  <div class="ph-vtag">📷 Ver foto</div>
+                </div>
+              </div>
+            </div>
+            <div class="ph-nav">
+              <div class="ph-nav-btn inactive">
+                <span style="font-size:14px">＋</span>
+                <span>Nueva visita</span>
+              </div>
+              <div class="ph-nav-btn active">
+                <span style="font-size:14px">≡</span>
+                <span>Mis visitas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paso-content fade-in">
+      <div class="paso-num">
+        <div class="paso-num-circle" style="background:linear-gradient(135deg,#0891b2,#06b6d4)">≡</div>
+        <div class="paso-num-txt" style="color:#0891b2">Historial del día</div>
+      </div>
+      <h3 class="paso-title">Mis Visitas del Día</h3>
+      <div class="info-list">
+        <div class="info-item"><div class="info-dot dot-blue"></div><div class="info-text">Toca <strong>"Mis visitas"</strong> en la barra inferior de la app.</div></div>
+        <div class="info-item"><div class="info-dot dot-green"></div><div class="info-text">Cada tarjeta muestra: nombre del médico, <strong>hora de entrada y salida</strong>, duración en minutos.</div></div>
+        <div class="info-item"><div class="info-dot dot-green"></div><div class="info-text">Toca <strong>"📷 Ver foto"</strong> en cada tarjeta para abrir la foto en Google Drive.</div></div>
+        <div class="info-item"><div class="info-dot dot-green"></div><div class="info-text">El historial se <strong>actualiza automáticamente cada 30 segundos</strong> desde la nube.</div></div>
+        <div class="info-item"><div class="info-dot dot-blue"></div><div class="info-text">Si cambias de celular, <strong>ves exactamente las mismas visitas</strong> porque vienen de Google Sheets.</div></div>
+        <div class="info-item"><div class="info-dot dot-amber"></div><div class="info-text">Sin internet: solo ves visitas pendientes de sincronizar. La barra amarilla indica sin conexión.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ FAQ ══ -->
+<div class="section" id="faq">
+  <div class="section-label">❓ Ayuda</div>
+  <h2 class="section-title">Preguntas Frecuentes</h2>
+  <p class="section-sub">Las situaciones más comunes y cómo resolverlas rápidamente.</p>
+
+  <div class="faq-grid fade-in">
+    <div class="faq-card">
+      <div class="faq-icon">📋</div>
+      <div class="faq-q">No aparecen las visitas en "Mis visitas"</div>
+      <div class="faq-a">Verifica que tengas internet activo. El historial se carga desde la nube y tarda 2-3 segundos. Toca "Mis visitas" de nuevo para forzar la recarga. Se actualiza solo cada 30 segundos.</div>
+    </div>
+    <div class="faq-card">
+      <div class="faq-icon">📷</div>
+      <div class="faq-q">La foto dice "Subiendo..." y no aparece el link</div>
+      <div class="faq-a">Es completamente normal. La foto puede tardar 10-15 segundos en subirse a Google Drive. Espera un momento y recarga el historial tocando "Mis visitas" de nuevo.</div>
+    </div>
+    <div class="faq-card">
+      <div class="faq-icon">📍</div>
+      <div class="faq-q">El GPS no obtiene la ubicación</div>
+      <div class="faq-a">Ve a Configuración del celular → Apps → Chrome (o Safari) → Permisos → Ubicación → selecciona "Permitir siempre". Luego vuelve a la app y toca "Actualizar".</div>
+    </div>
+    <div class="faq-card">
+      <div class="faq-icon">⏱️</div>
+      <div class="faq-q">La app se cerró sola o finalizó la visita</div>
+      <div class="faq-a">Es intencional. Si la visita superó 2 horas sin que respondas la alerta, la app la finaliza automáticamente. La visita quedó guardada correctamente con 120 minutos y aparece en el historial.</div>
+    </div>
+    <div class="faq-card">
+      <div class="faq-icon">📧</div>
+      <div class="faq-q">No llegan los correos de notificación</div>
+      <div class="faq-a">Primero verifica que la visita aparezca en "Mis visitas". Si aparece, revisa la carpeta de spam o correo no deseado. Los correos se envían en segundos después de finalizar la visita.</div>
+    </div>
+    <div class="faq-card">
+      <div class="faq-icon">📶</div>
+      <div class="faq-q">¿Puedo registrar visitas sin internet?</div>
+      <div class="faq-a">Sí. Puedes registrar normalmente: el formulario, la foto y el GPS funcionan sin conexión. Los datos se guardan en el teléfono y se sincronizan automáticamente cuando recuperas internet.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DATOS UTILES ══ -->
+<div class="section" id="datos" style="padding-bottom:100px">
+  <div class="datos-section fade-in">
+    <div class="section-label" style="color:var(--g300)">📌 Referencia rápida</div>
+    <h2 class="section-title" style="color:#fff">Datos Útiles</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,.6)">Información importante a tener siempre a la mano.</p>
+    <div class="datos-grid">
+      <div class="dato-card">
+        <div class="dato-icon">🌐</div>
+        <div class="dato-label">URL de la app</div>
+        <div class="dato-value" style="font-family:var(--mono);font-size:12px">app-corfa.vercel.app</div>
+      </div>
+      <div class="dato-card">
+        <div class="dato-icon">🤖</div>
+        <div class="dato-label">Android</div>
+        <div class="dato-value">Usa Chrome para instalar y usar la app</div>
+      </div>
+      <div class="dato-card">
+        <div class="dato-icon">🍎</div>
+        <div class="dato-label">iPhone</div>
+        <div class="dato-value">Usa Safari obligatoriamente (no Chrome)</div>
+      </div>
+      <div class="dato-card">
+        <div class="dato-icon">📶</div>
+        <div class="dato-label">Sin internet</div>
+        <div class="dato-value">Puedes registrar. Se sincroniza al recuperar conexión</div>
+      </div>
+      <div class="dato-card">
+        <div class="dato-icon">🔄</div>
+        <div class="dato-label">Actualización historial</div>
+        <div class="dato-value">Automática cada 30 segundos desde la nube</div>
+      </div>
+      <div class="dato-card">
+        <div class="dato-icon">📸</div>
+        <div class="dato-label">Fotos guardadas en</div>
+        <div class="dato-value">Google Drive — Carpeta "Fotos Visitas BIONESTA"</div>
+      </div>
+      <div class="dato-card">
+        <div class="dato-icon">📧</div>
+        <div class="dato-label">Correos automáticos</div>
+        <div class="dato-value">Al terminar cada visita + resumen diario a las 5PM</div>
+      </div>
+      <div class="dato-card">
+        <div class="dato-icon">⏱️</div>
+        <div class="dato-label">Duración máxima</div>
+        <div class="dato-value">2 horas (120 minutos) por visita</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Fade-in al hacer scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
